@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <span>My Application</span>
+  <span class="example-fill-remaining-space"></span>
+  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+
+
+<nav mat-tab-nav-bar>
+  <a mat-tab-link routerLink="/first"
+     (click)="activeLink = 'First'"
+     [active]="activeLink == 'First'"> First </a>
+  <a mat-tab-link routerLink="/second"
+     (click)="activeLink = 'Second'"
+     [active]="activeLink == 'Second'"> Second</a>
+</nav>
+<router-outlet></router-outlet>
+
