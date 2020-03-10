@@ -30,10 +30,14 @@ export class FirstBlogComponent implements OnInit {
   ELEMENT_DATA_1: Master[] = [
     {
       id: 4, a_iden_string: 'a_iden_string_1', b_iden_string: 'b_iden_string_1',
-      dca: 100, cca: 20, name: 'name 1', cc: 'cc1', ctr:'ctr1', my:'my1', dt:'dt1', reg_place:'reg_place1', colo:'colo1'},
+      dca: 100, cca: 20, name: 'name 1', cc: '1111111111111111111111111111', ctr:'1111111111111111111111111111', my:'my1', dt:'dt1', reg_place:'reg_place1', colo:'colo1'},
     {
       id: 5, a_iden_string: 'a_iden_string_2', b_iden_string: 'b_iden_string_2',
-      dca: 100, cca: 20, name: 'name 2', cc: 'cc2', ctr:'ctr2', my:'my2', dt:'dt2', reg_place:'reg_place2', colo:'colo2'}
+      dca: 100, cca: 20, name: 'name 2', cc: '2222222222222222222222222222', ctr:'2222222222222222222222222222', my:'my2', dt:'dt2', reg_place:'reg_place2', colo:'colo2'},
+    {
+      id: 4, a_iden_string: 'a_iden_string_1', b_iden_string: 'b_iden_string_1',
+      dca: 100, cca: 20, name: 'name 1', cc: '1111111111111111111111111111', ctr:'1111111111111111111111111111', my:'my1', dt:'dt1', reg_place:'reg_place1', colo:'colo1'},
+
   ];
 
   /*
