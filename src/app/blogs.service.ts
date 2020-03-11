@@ -20,6 +20,15 @@ export class BlogsService {
     );
   }
 
+
+
+  postTables(): Observable<Post[]> {
+  return this.http.get<Post[]>(this.blogsUrl + '/first?table=suspect&rowID=9').pipe(
+    tap(_ => this.log('fetched heroes')),
+  catchError(this.handleError<Post[]>('getHeroes', []))
+);
+}
+
   private log(message: string) {
     console.log(message);
   }

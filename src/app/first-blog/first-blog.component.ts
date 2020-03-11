@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Master, Post} from '../post';
 import {MatTable} from "@angular/material/table";
+import {BlogsService} from '../blogs.service';
 
 interface TableTypes {
   value: string;
@@ -15,7 +16,7 @@ interface TableTypes {
 })
 export class FirstBlogComponent implements OnInit {
 
-  constructor() { }
+  constructor(private blogService: BlogsService) { }
 
   @ViewChild(MatTable) table: MatTable<any>;
 
@@ -29,14 +30,48 @@ export class FirstBlogComponent implements OnInit {
 
   ELEMENT_DATA_1: Master[] = [
     {
-      id: 4, a_iden_string: 'a_iden_string_1', b_iden_string: 'b_iden_string_1',
-      dca: 100, cca: 20, name: 'name 1', cc: '1111111111111111111111111111', ctr:'1111111111111111111111111111', my:'my1', dt:'dt1', reg_place:'reg_place1', colo:'colo1'},
+      id: 4,
+      a_iden_string: 'a_iden_string_1',
+      b_iden_string: 'b_iden_string_1',
+      // tslint:disable-next-line:max-line-length
+      dca: 100,
+      cca: 20,
+      name: 'name 1',
+      cc: '1111111111111111111111111111',
+      ctr: '1111111111111111111111111111',
+      my: 'my1',
+      dt: 'dt1',
+      reg_place: 'reg_place1',
+      colo: 'colo1'
+    },
     {
-      id: 5, a_iden_string: 'a_iden_string_2', b_iden_string: 'b_iden_string_2',
-      dca: 100, cca: 20, name: 'name 2', cc: '2222222222222222222222222222', ctr:'2222222222222222222222222222', my:'my2', dt:'dt2', reg_place:'reg_place2', colo:'colo2'},
+      id: 5,
+      a_iden_string: 'a_iden_string_2',
+      b_iden_string: 'b_iden_string_2',
+      dca: 100,
+      cca: 20,
+      name: 'name 2',
+      cc: '2222222222222222222222222222',
+      ctr: '2222222222222222222222222222',
+      my: 'my2',
+      dt: 'dt2',
+      reg_place: 'reg_place2',
+      colo: 'colo2'
+    },
     {
-      id: 4, a_iden_string: 'a_iden_string_1', b_iden_string: 'b_iden_string_1',
-      dca: 100, cca: 20, name: 'name 1', cc: '1111111111111111111111111111', ctr:'1111111111111111111111111111', my:'my1', dt:'dt1', reg_place:'reg_place1', colo:'colo1'},
+      id: 4,
+      a_iden_string: 'a_iden_string_1',
+      b_iden_string: 'b_iden_string_1',
+      dca: 100,
+      cca: 20,
+      name: 'name 1',
+      cc: '1111111111111111111111111111',
+      ctr: '1111111111111111111111111111',
+      my: 'my1',
+      dt: 'dt1',
+      reg_place: 'reg_place1',
+      colo: 'colo1'
+    },
 
   ];
 
@@ -51,6 +86,7 @@ export class FirstBlogComponent implements OnInit {
   ctr: string;
   dt: string;
   * */
+  // tslint:disable-next-line:max-line-length
   displayedColumns: string[] = ['id', 'a_iden_string', 'b_iden_string', 'dca', 'cca', 'name', 'cc', 'ctr', 'my', 'dt', 'reg_place', 'colo', 'operation'];
 
   selectedRowId: string;
@@ -67,18 +103,22 @@ export class FirstBlogComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.ELEMENT_DATA)
+    console.log(this.ELEMENT_DATA);
   }
 
-  changeFoods(event): void {
+  changeTables(event): void {
 
-    this.rowNumber = +event.value.split("_")[1];
+    this.rowNumber = +event.value.split('_')[1];
 
     if (this.rowNumber > -1) {
       this.dataSource.splice(this.rowNumber, 1);
     }
 
     this.table.renderRows();
+
+    this.blogService.postTables().subscribe(blogs => console.log(blogs));
+
+
 
 /*
     console.log(row);
@@ -90,19 +130,20 @@ export class FirstBlogComponent implements OnInit {
     this.table.renderRows();*/
 
 
-    //this.ELEMENT_DATA.pop();
+    // this.ELEMENT_DATA.pop();
 
-    //this.table.renderRows();
-   // console.log(`HelloWorld ${event.value}`)
-    //this.ELEMENT_DATA.e
+    // this.table.renderRows();
+    // console.log(`HelloWorld ${event.value}`)
+    // this.ELEMENT_DATA.e
 
-    //this.ELEMENT_DATA.indexOf()
-    //this.operateValue = this.ELEMENT_DATA.filter(a => a.id === imp[1]);
-    //this.clickIndex = this.ELEMENT_DATA.indexOf(this.operateValue[0]);
-    //this.ELEMENT_DATA = this.ELEMENT_DATA.slice(0, this.rowNumber).concat(this.ELEMENT_DATA.slice(this.rowNumber+1, this.ELEMENT_DATA.length));
-    //console.log(this.ELEMENT_DATA);
-    //this.dataSource.splice(this.rowNumber, 1);
-    //this.table.renderRows();
+    // this.ELEMENT_DATA.indexOf()
+    // this.operateValue = this.ELEMENT_DATA.filter(a => a.id === imp[1]);
+    // this.clickIndex = this.ELEMENT_DATA.indexOf(this.operateValue[0])
+    // tslint:disable-next-line:max-line-length
+    // this.ELEMENT_DATA = this.ELEMENT_DATA.slice(0, this.rowNumber).concat(this.ELEMENT_DATA.slice(this.rowNumber+1, this.ELEMENT_DATA.length));
+    // console.log(this.ELEMENT_DATA);
+    // this.dataSource.splice(this.rowNumber, 1);
+    // this.table.renderRows();
 
   }
 
