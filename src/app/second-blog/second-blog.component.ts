@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {of} from "rxjs";
+import {delay} from "rxjs/operators";
 
 @Component({
   selector: 'app-second-blog',
@@ -9,11 +11,17 @@ export class SecondBlogComponent implements OnInit {
 
   constructor() { }
 
-  displayedColumns =
-    ['name', 'position', 'weight', 'symbol', 'position', 'weight', 'symbol', 'star'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource: any;
 
-  ngOnInit(): void {
+  isLoading = true;
+
+  ngOnInit() {
+    of(ELEMENT_DATA).pipe(delay(1000))
+      .subscribe(data => {
+        this.isLoading = false;
+        this.dataSource = data
+      }, error => this.isLoading = false);
   }
 
 }

@@ -11,7 +11,7 @@ export class BlogsService {
 
   constructor(private http: HttpClient) { }
 
-  private blogsUrl = 'http://192.168.92.129:9000/v1/posts';  // URL to web api
+  private blogsUrl = 'http://192.168.50.60:9000/api';  // URL to web api
 
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(this.blogsUrl).pipe(

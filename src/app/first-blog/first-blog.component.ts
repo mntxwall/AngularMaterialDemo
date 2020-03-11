@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Master, Post} from '../post';
 import {MatTable} from "@angular/material/table";
 import {BlogsService} from '../blogs.service';
+import {of} from "rxjs";
+import {delay} from "rxjs/operators";
 
 interface TableTypes {
   value: string;
@@ -90,7 +92,7 @@ export class FirstBlogComponent implements OnInit {
   displayedColumns: string[] = ['id', 'a_iden_string', 'b_iden_string', 'dca', 'cca', 'name', 'cc', 'ctr', 'my', 'dt', 'reg_place', 'colo', 'operation'];
 
   selectedRowId: string;
-  dataSource = this.ELEMENT_DATA_1;
+  //dataSource = this.ELEMENT_DATA_1;
 
   tableTypes = ['suspect', 'undecided', 'innocence'];
 
@@ -100,9 +102,18 @@ export class FirstBlogComponent implements OnInit {
     {value: 'innocence', viewValue: '没有问题'}
   ];
   private rowNumber: number;
+  dataSource: any;
+
+  isLoading = true;
 
 
   ngOnInit(): void {
+    of(this.ELEMENT_DATA_1).pipe(delay(3000))
+      .subscribe(data => {
+        this.isLoading = false;
+        this.dataSource = data
+      }, error => this.isLoading = false);
+
     console.log(this.ELEMENT_DATA);
   }
 
