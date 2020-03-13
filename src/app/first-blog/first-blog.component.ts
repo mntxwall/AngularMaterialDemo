@@ -61,7 +61,7 @@ export class FirstBlogComponent implements OnInit {
       colo: 'colo2'
     },
     {
-      id: 4,
+      id: 6,
       a_iden_string: 'a_iden_string_1',
       b_iden_string: 'b_iden_string_1',
       dca: 100,
@@ -89,7 +89,11 @@ export class FirstBlogComponent implements OnInit {
   dt: string;
   * */
   // tslint:disable-next-line:max-line-length
-  displayedColumns: string[] = ['id', 'a_iden_string', 'b_iden_string', 'dca', 'cca', 'name', 'cc', 'ctr', 'my', 'dt', 'reg_place', 'colo', 'operation'];
+  displayedColumns: string[] = ['id',
+    'name', 'suspect',
+    'contact', 'contact_num_reg_place', 'durationtime_count_all',
+    'cnt_count_all', 'contact_location', 'user_name', 'certification_code', 'mealtype', 'capture_time_read', 'dt'];
+
 
   selectedRowId: string;
   //dataSource = this.ELEMENT_DATA_1;
@@ -101,33 +105,49 @@ export class FirstBlogComponent implements OnInit {
     {value: 'undecided', viewValue: '无法确定'},
     {value: 'innocence', viewValue: '没有问题'}
   ];
-  private rowNumber: number;
+  //private rowNumber: number;
   dataSource: any;
 
   isLoading = true;
+  private rowNumber: number;
+  private tableName: string;
+  private postParam: Array<string>;
 
 
   ngOnInit(): void {
-    of(this.ELEMENT_DATA_1).pipe(delay(3000))
+
+    this.blogService.getMasterRows().subscribe(data => console.log(data));
+
+    of(this.ELEMENT_DATA_1).pipe(delay(1000))
       .subscribe(data => {
         this.isLoading = false;
         this.dataSource = data
       }, error => this.isLoading = false);
 
-    console.log(this.ELEMENT_DATA);
+    //console.log(this.ELEMENT_DATA);
   }
 
   changeTables(event): void {
+    this.postParam = event.value.split('_');
 
-    this.rowNumber = +event.value.split('_')[1];
+    this.rowNumber = +this.postParam[1];
+    this.tableName = this.postParam[0];
+
+    console.log();
+
+    this.blogService.postTables(this.tableName,
+      (<Master>this.dataSource[0]).id).subscribe(blogs => console.log(blogs));
 
     if (this.rowNumber > -1) {
       this.dataSource.splice(this.rowNumber, 1);
     }
 
+    //console.log(this.dataSource[this.rowNumber-1].id);
+
+
     this.table.renderRows();
 
-    this.blogService.postTables().subscribe(blogs => console.log(blogs));
+
 
 
 

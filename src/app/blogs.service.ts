@@ -21,9 +21,17 @@ export class BlogsService {
   }
 
 
+  getMasterRows(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.blogsUrl + '/first').pipe(
+      tap(_ => this.log('fetched heroes')),
+      catchError(this.handleError<Post[]>('getHeroes', []))
+    );
+  }
 
-  postTables(): Observable<Post[]> {
-  return this.http.get<Post[]>(this.blogsUrl + '/first?table=suspect&rowID=9').pipe(
+
+
+  postTables(tableName: string, rowNumber: number): Observable<Post[]> {
+  return this.http.get<Post[]>(this.blogsUrl + `/first?table=${tableName}&rowID=${rowNumber}`).pipe(
     tap(_ => this.log('fetched heroes')),
   catchError(this.handleError<Post[]>('getHeroes', []))
 );
