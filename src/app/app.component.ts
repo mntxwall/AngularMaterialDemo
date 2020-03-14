@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BlogsService} from './blogs.service';
 import {Post} from './post';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {environment} from '../environments/environment';
 
 
 
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(environment.apiUrl);
    // this.blogService.getPosts().subscribe(blogs => console.log(blogs));
     // this.router.snapshot.
      // this.router.

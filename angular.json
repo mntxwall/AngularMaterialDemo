@@ -93,6 +93,9 @@
           "configurations": {
             "production": {
               "browserTarget": "AngularMaterialDemo:build:production"
+            },
+            "es5": {
+              "browserTarget": "AngularMaterialDemo:build:es5"
             }
           }
         },

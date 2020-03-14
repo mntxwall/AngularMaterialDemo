@@ -10,7 +10,7 @@ import {MaterialModule} from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { FirstBlogComponent } from './first-blog/first-blog.component';
 import { SecondBlogComponent } from './second-blog/second-blog.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
