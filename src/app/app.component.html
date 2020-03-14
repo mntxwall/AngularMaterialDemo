@@ -12,11 +12,11 @@
 
 <nav mat-tab-nav-bar>
   <a mat-tab-link routerLink="/first"
-     (click)="activeLink = 'First'"
-     [active]="activeLink == 'First'"> First </a>
+     (click)="activeLink = '/first'"
+     [active]="activeLink == '/first' "> First </a>
   <a mat-tab-link routerLink="/second"
-     (click)="activeLink = 'Second'"
-     [active]="activeLink == 'Second'"> Second</a>
+     (click)="activeLink = '/second'"
+     [active]="activeLink == '/second'"> Second</a>
 </nav>
 <router-outlet></router-outlet>
 

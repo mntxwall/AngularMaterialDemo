@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {of} from "rxjs";
 import {delay} from "rxjs/operators";
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-second-blog',
@@ -9,7 +10,7 @@ import {delay} from "rxjs/operators";
 })
 export class SecondBlogComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: ActivatedRoute) { }
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource: any;
@@ -17,6 +18,7 @@ export class SecondBlogComponent implements OnInit {
   isLoading = true;
 
   ngOnInit() {
+    console.log(`This is Second ${this.router.snapshot.url}`);
     of(ELEMENT_DATA).pipe(delay(1000))
       .subscribe(data => {
         this.isLoading = false;

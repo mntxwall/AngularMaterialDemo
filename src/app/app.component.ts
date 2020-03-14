@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogsService} from './blogs.service';
 import {Post} from './post';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 
 
@@ -11,15 +12,31 @@ import {Post} from './post';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private blogService: BlogsService) {
+
+  constructor(private blogService: BlogsService, private router: Router) {
+
+    this.router.events.subscribe( e => {
+      if (e instanceof NavigationEnd) {
+        if (e.url === '/') {
+          this.activeLink = '/first';
+        } else {
+        this.activeLink = e.url;
+        }
+        console.log(e.url);
+      }
+    }
+  );
   }
   title = 'AngularMaterialDemo';
 
-  links = ['First', 'Second'];
-  activeLink = this.links[0];
+  activeLink = '';
+
+  // private router: any;
 
 
   ngOnInit(): void {
    // this.blogService.getPosts().subscribe(blogs => console.log(blogs));
+    // this.router.snapshot.
+     // this.router.
   }
 }
