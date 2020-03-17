@@ -11,12 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { FirstBlogComponent } from './first-blog/first-blog.component';
 import { SecondBlogComponent } from './second-blog/second-blog.component';
 import {FormsModule} from '@angular/forms';
+import { HeroFormComponent } from './hero-form/hero-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstBlogComponent,
-    SecondBlogComponent
+    SecondBlogComponent,
+    HeroFormComponent
   ],
   imports: [
     BrowserModule,
