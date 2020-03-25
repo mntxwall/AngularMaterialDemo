@@ -13,13 +13,22 @@
 <nav mat-tab-nav-bar>
   <a mat-tab-link routerLink="/first"
      (click)="activeLink = '/first'"
-     [active]="activeLink == '/first' "> First </a>
+     [active]="activeLink == '/first'"> First </a>
   <a mat-tab-link routerLink="/second"
      (click)="activeLink = '/second'"
      [active]="activeLink == '/second'"> Second</a>
 </nav>
-<router-outlet></router-outlet>
 -->
 
+<nav mat-tab-nav-bar>
+  <a mat-tab-link routerLink="/first"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive"> First </a>
+  <a mat-tab-link routerLink="/second"
+     routerLinkActive #rlb="routerLinkActive"
+     [active]="rlb.isActive"> Second</a>
+</nav>
+<router-outlet></router-outlet>
 
-<app-hero-form></app-hero-form>
+
+<!--<app-hero-form></app-hero-form>-->
