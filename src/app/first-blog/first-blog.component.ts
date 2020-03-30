@@ -4,21 +4,61 @@ import {MatTable} from '@angular/material/table';
 import {BlogsService} from '../blogs.service';
 import {of} from 'rxjs';
 import {delay} from 'rxjs/operators';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 
 interface TableTypes {
   value: string;
   viewValue: string;
 }
 
+import * as _moment from 'moment';
+import 'moment/min/locales';
+import {FormControl} from "@angular/forms";
+// tslint:disable-next-line:no-duplicate-imports
+
+const moment =  _moment;
+
+// See the Moment.js docs for the meaning of these formats:
+// https://momentjs.com/docs/#/displaying/format/
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'YYYYMMDD',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
+
 
 @Component({
   selector: 'app-first-blog',
   templateUrl: './first-blog.component.html',
-  styleUrls: ['./first-blog.component.css']
+  styleUrls: ['./first-blog.component.css'],
+  providers: [
+    // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
+    // application's root module. We provide it at the component level here, due to limitations of
+    // our example generation script.
+    {provide: MAT_DATE_LOCALE, useValue: 'zh-cn'},
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
 })
 export class FirstBlogComponent implements OnInit {
 
-  constructor(private blogService: BlogsService) { }
+  constructor(private blogService: BlogsService, private _adapter: DateAdapter<any>) { }
+
+  date = new FormControl(moment().locale('fr'));
+
+
 
   @ViewChild(MatTable) table: MatTable<any>;
 
@@ -209,6 +249,9 @@ export class FirstBlogComponent implements OnInit {
         this.dataSource = data;
         this.dataShow = this.dataSource.slice(0, this.pageSize);
       }, error => this.isLoading = false);
+    //this._adapter.setLocale('cn');
+
+    console.log(moment().locale('zh-cn').format('LLLL'));
 
     //  console.log(this.ELEMENT_DATA);
   }

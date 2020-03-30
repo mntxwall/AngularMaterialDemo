@@ -10,5 +10,8 @@ td.mat-cell,th.mat-header-cell {
   border-left: 1px solid #e0e0e0;
   text-align: center
 }
+.div-datepicker {
+  margin-left: 14px;
+}
 
 
