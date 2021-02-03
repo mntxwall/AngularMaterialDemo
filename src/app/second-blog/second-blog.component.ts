@@ -1,29 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {of} from "rxjs";
 import {delay} from "rxjs/operators";
 import {ActivatedRoute} from '@angular/router';
+import {MatSort, MatSortable} from "@angular/material/sort";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-second-blog',
   templateUrl: './second-blog.component.html',
   styleUrls: ['./second-blog.component.css']
 })
-export class SecondBlogComponent implements OnInit {
+export class SecondBlogComponent implements OnInit, AfterViewInit  {
 
   constructor(private router: ActivatedRoute) { }
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource: any;
+ // dataSource: any;
+  dataSource = new MatTableDataSource<PeriodicElement>();
+ // dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  isLoading = true;
+  isLoading = false;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit() {
     console.log(`This is Second ${this.router.snapshot.url}`);
+
     of(ELEMENT_DATA).pipe(delay(1000))
       .subscribe(data => {
         this.isLoading = false;
-        this.dataSource = data
+        //this.dataSource = data;
+        //this.dataSource = new MatTableDataSource(data);
+        this.dataSource.data = data;
+        this.dataSource.sort = this.sort;
       }, error => this.isLoading = false);
+
+    //
+  }
+
+  ngAfterViewInit(): void {
+
   }
 
 }

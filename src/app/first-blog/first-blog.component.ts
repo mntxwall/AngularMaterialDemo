@@ -56,7 +56,7 @@ export class FirstBlogComponent implements OnInit {
 
   constructor(private blogService: BlogsService, private _adapter: DateAdapter<any>) { }
 
-  date = new FormControl(moment().locale('fr'));
+  date = new FormControl(moment());
 
 
 
@@ -235,11 +235,13 @@ export class FirstBlogComponent implements OnInit {
   pageIndex = 0;
   pageSize = 5;
 
+  buttonIsEnable = false;
+
 
 
   ngOnInit(): void {
 
-    // this.blogService.getMasterRows().subscribe(data => console.log(data));
+     //this.blogService.getMasterRows().subscribe(data => console.log(data));
 
     of(this.ELEMENT_DATA_1).pipe(delay(1000))
       .subscribe(data => {
@@ -262,6 +264,21 @@ export class FirstBlogComponent implements OnInit {
     this.dataShow  = this.dataSource.slice(event.pageIndex * event.pageSize, (event.pageIndex + 1) * event.pageSize);
     this.table.renderRows();
     console.log(event);
+  }
+
+  setCookiesTest(event) :void {
+    this.buttonIsEnable  = true;
+    console.log("SetCookies");
+    //this.blogService.getMasterRows();
+    this.blogService.setCookiesTest().pipe(delay(3000)).subscribe(data => {
+
+      this.buttonIsEnable = false;
+      console.log(data)
+    });
+  }
+
+  clearCookiesTest(event) {
+    console.log("ClearCookies")
   }
 
   changeTables(event): void {

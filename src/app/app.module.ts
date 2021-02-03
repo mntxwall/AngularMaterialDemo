@@ -12,6 +12,13 @@ import { FirstBlogComponent } from './first-blog/first-blog.component';
 import { SecondBlogComponent } from './second-blog/second-blog.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HeroFormComponent } from './hero-form/hero-form.component';
+import {MatSortModule} from "@angular/material/sort";
+
+
+//import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
+
+//import {ChinesePaginator} from "./second-blog/chinese-paginator";
+
 
 @NgModule({
   declarations: [
@@ -27,9 +34,11 @@ import { HeroFormComponent } from './hero-form/hero-form.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSortModule
   ],
-  providers: [],
+  providers: [
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

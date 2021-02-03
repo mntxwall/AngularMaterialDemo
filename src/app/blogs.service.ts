@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Post} from './post';
+import {Post, postResult} from './post';
 import {Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 
@@ -25,6 +25,22 @@ export class BlogsService {
     return this.http.get<Post[]>(this.blogsUrl + '/first').pipe(
       tap(_ => this.log('fetched heroes')),
       catchError(this.handleError<Post[]>('getHeroes', []))
+    );
+  }
+
+  setCookiesTest(): Observable<postResult[]> {
+    console.log("HelloCookies");
+    return this.http.post<postResult[]>(this.blogsUrl + '/cookies', "", {withCredentials: true}).pipe(
+      tap(_ => this.log('setCookiesTestBody')),
+      catchError(this.handleError<postResult[]>('setCookies', []))
+    );
+  }
+
+  clearCookiesTest(): Observable<postResult[]> {
+    console.log("resetCookies");
+    return this.http.post<postResult[]>(this.blogsUrl + '/clear', "", {withCredentials: true}).pipe(
+      tap(_ => this.log('setCookiesTestBody')),
+      catchError(this.handleError<postResult[]>('setCookies', []))
     );
   }
 

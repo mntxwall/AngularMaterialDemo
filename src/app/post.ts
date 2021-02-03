@@ -18,5 +18,8 @@ export interface Master {
   my: string;
   ctr: string;
   dt: string;
+}
 
+export interface postResult {
+  result: string
 }

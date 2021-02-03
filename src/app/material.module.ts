@@ -5,7 +5,6 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
 
 import {MatCardModule} from '@angular/material/card';
@@ -14,6 +13,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {TransPaginator} from "./trans-paginator";
+import {ChinesePaginator} from "./second-blog/chinese-paginator";
+import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [],
@@ -26,15 +28,17 @@ import {MatInputModule} from '@angular/material/input';
     MatButtonModule,
     MatTabsModule,
     MatTableModule,
-    MatPaginatorModule,
     MatSelectModule,
     MatProgressSpinnerModule,
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule
-
+    MatInputModule,
+    MatPaginatorModule
+  ],
+  providers:[
+    {provide: MatPaginatorIntl, useClass: ChinesePaginator}
   ]
 })
 export class MaterialModule { }

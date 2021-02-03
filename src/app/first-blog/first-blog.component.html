@@ -6,7 +6,10 @@
         <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
         <mat-datepicker #dp3 disabled="false"></mat-datepicker>
       </mat-form-field>
+    <button class="div-datepicker" mat-raised-button (click)="setCookiesTest($event)" color="primary" [disabled]="buttonIsEnable">Cookies</button>
+    <button class="div-datepicker" mat-raised-button (click)="clearCookiesTest($event)" color="primary">Cookies clear</button>
   </div>
+
 
   <table mat-table [dataSource]="dataShow">
 
